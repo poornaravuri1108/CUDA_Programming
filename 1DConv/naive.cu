@@ -1,6 +1,6 @@
 #include "cuda_runtime.h"
 #include <vector>
-#include <math>
+#include <cmath>
 #include <iostream>
 #include <cstdlib>
 
@@ -10,7 +10,7 @@ __global__ void conv_1d_kernel(const float* __restrict__ input, const float* __r
 	if(tid>=output_size) return;
 
 	float tmp=0.0f;
-	for(int j=0; i<kernel_size; ++j){
+	for(int j=0; j<kernel_size; ++j){
 		tmp+=input[tid+j]*kernel[j];
 	}
 	output[tid]=tmp;
