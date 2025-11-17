@@ -18,7 +18,7 @@ __global__ void conv_1d_kernel(const float* __restrict__ input, const float* __r
 
 extern "C" void solve(const float* input, const float* kernel, float* output, int input_size, int kernel_size){
 	int output_size = input_size-kernel_size+1;
-	int threadsPerBlock = 256;
+	int threadsPerBlock = 512;
 	int blocksPerGrid = (output_size+threadsPerBlock-1)/threadsPerBlock;
 
 	conv_1d_kernel<<<blocksPerGrid, threadsPerBlock>>>(input, kernel, output, input_size, kernel_size);
