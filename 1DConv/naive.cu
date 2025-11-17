@@ -16,7 +16,7 @@ __global__ void conv_1d_kernel(const float* __restrict__ input, const float* __r
 	output[tid]=tmp;
 }
 
-extern "c" void solve(const float* input, const float* kernel, float* output, int input_size, int kernel_size){
+extern "C" void solve(const float* input, const float* kernel, float* output, int input_size, int kernel_size){
 	int output_size = input_size-kernel_size+1;
 	int threadsPerBlock = 256;
 	int blocksPerGrid = (output_size+threadsPerBlock-1)/threadsPerBlock;
@@ -78,7 +78,7 @@ int main(){
 	for(int it=0; it<iters; ++it){
 		solve(d_input, d_kernel, d_output, input_size, kernel_size);
 	}
-	cudaEventRecord(&stop);
+	cudaEventRecord(stop);
 	float ms=0.0f;
 	cudaEventElapsedTime(&ms, start, stop);
 	float time_per_iter = ms/iters;
