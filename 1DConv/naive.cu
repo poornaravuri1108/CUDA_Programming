@@ -79,6 +79,7 @@ int main(){
 		solve(d_input, d_kernel, d_output, input_size, kernel_size);
 	}
 	cudaEventRecord(&stop);
+	float ms=0.0f;
 	cudaEventElapsedTime(&ms, start, stop);
 	float time_per_iter = ms/iters;
 
